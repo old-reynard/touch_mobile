@@ -1,0 +1,45 @@
+{
+  "@@last_modified": "2019-01-06T21:32:09.880468",
+  "appName": "Tutor",
+  "@appName": {
+    "description": "name of the app",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailPrompt": "Your email address",
+  "@emailPrompt": {
+    "description": "Label text for registration screen, email",
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordPrompt": "Your password",
+  "@passwordPrompt": {
+    "description": "Label text for registration screen, password",
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordPromptAgain": "Your password again, to verify",
+  "@passwordPromptAgain": {
+    "description": "Label text for registration screen, password",
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextButton": "Next",
+  "@nextButton": {
+    "description": "Text on the Next button, email registration screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailValidator": "Let's use a valid email, please",
+  "@emailValidator": {
+    "description": "Email validation error message for registration",
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordValidator": "Let's use a valid password, please",
+  "@passwordValidator": {
+    "description": "Password validation error message for registration",
+    "type": "text",
+    "placeholders": {}
+  }
+}

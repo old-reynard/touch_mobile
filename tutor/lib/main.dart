@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tutor/data/constants.dart';
 import 'auth_page.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'locale/locales.dart';
+import 'models/models.dart';
+
 void main() => runApp(TutorApp());
 
 class TutorApp extends StatelessWidget {
@@ -10,9 +14,19 @@ class TutorApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      title: appName,
       theme: appTheme,
       home: Root(),
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('ru', ''),
+      ],
+      onGenerateTitle: (BuildContext context) =>
+        AppLocalizations.of(context).appName,
     );
   }
 }
@@ -28,6 +42,6 @@ class _RootState extends State<Root> {
 
   @override
   Widget build(BuildContext context) {
-    return AuthPage();
+    return AuthPage(user: User(),);
   }
 }

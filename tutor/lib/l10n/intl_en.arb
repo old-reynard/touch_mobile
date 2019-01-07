@@ -1,0 +1,15 @@
+{
+
+  "appName": "Tutor",
+  "@appName": {
+    "description": "name of the app",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailPrompt": "Your email address",
+  "@emailPrompt": {
+    "description": "Label text for registration screen, email",
+    "type": "text",
+    "placeholders": {}
+  }
+}

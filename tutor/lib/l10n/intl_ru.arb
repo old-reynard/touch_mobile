@@ -1,0 +1,15 @@
+{
+
+  "appName": "Репетитор",
+  "@appName": {
+    "description": "name of the app",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailPrompt": "Ваша электронная почта",
+  "@emailPrompt": {
+    "description": "Label text for registration screen, email",
+    "type": "text",
+    "placeholders": {}
+  }
+}

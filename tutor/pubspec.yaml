@@ -38,6 +38,7 @@ flutter:
       fonts:
 #        - asset: fonts/Lato-Regular.ttf
         - asset: fonts/Lato-Light.ttf
+        - asset: fonts/Lato-Heavy.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
