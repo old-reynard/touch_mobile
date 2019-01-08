@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const emailKey = 'email';
+const firstNameKey = 'first_name';
+
 const int passwordMinLength = 8;
 
 const Pattern emailRegex =

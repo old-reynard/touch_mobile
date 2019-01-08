@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Jan 07 00:28:01 EST 2019
+#Mon Jan 07 00:48:46 EST 2019
 4.path=lib/armeabi-v7a/libflutter.so
 13.baseType=DIRECTORY
 8.set=DEX

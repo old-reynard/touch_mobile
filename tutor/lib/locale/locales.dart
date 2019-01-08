@@ -79,6 +79,49 @@ class AppLocalizations {
         desc: 'Password validation error message for registration'
     );
   }
+
+  String get firstNameFieldLabel {
+    return Intl.message('Your first name here',
+        name: 'firstNameFieldLabel',
+        desc: 'Label text for registation'
+    );
+  }
+
+  String get lastNameFieldLabel {
+    return Intl.message('Your last name here',
+        name: 'lastNameFieldLabel',
+        desc: 'Label text for registation'
+    );
+  }
+
+  String get usernameFieldLabel {
+    return Intl.message('Your username',
+        name: 'usernameFieldLabel',
+        desc: 'Label text for registation'
+    );
+  }
+
+  String get usernameFieldHint {
+    return Intl.message('It will make your account unique',
+        name: 'usernameFieldHint',
+        desc: 'Hint text for registation'
+    );
+  }
+
+  String get nameValidatorEmpty {
+    return Intl.message('We need a name!',
+        name: 'nameValidatorEmpty',
+        desc: 'Reminder if registration name field is empty'
+    );
+  }
+
+  String get nameScreenWarning {
+    return Intl.message('Ok, almost there!',
+        name: 'nameScreenWarning',
+        desc: 'Begins the names screen in registration'
+    );
+  }
+
 }
 
 
