@@ -4,6 +4,8 @@ import 'data/constants.dart';
 import 'package:tutor/locale/locales.dart';
 import 'package:tutor/widgets/widgets.dart' as ui;
 import 'package:tutor/find_me.dart';
+import 'services/create_user_service.dart';
+import 'dart:convert';
 
 enum RegistrationStep { EMAIL, PASSWORD, NAMES }
 
@@ -30,6 +32,8 @@ class _AuthPageState extends State<AuthPage> {
   bool _emailAutoValidate     = false;
   bool _passwordAutoValidate  = false;
   bool _usernameAutoValidate  = false;
+
+  CreateUserService createUserService = CreateUserService();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +92,14 @@ class _AuthPageState extends State<AuthPage> {
       ? null
       : AppLocalizations.of(context).nameValidatorEmpty;
 
-  String _validateUsername(String username) => null;
+  String _validateUsername(String username) {
+    Map raw;
+    createUserService.verifyUsername(username).then((String response) {
+      raw = json.decode(response);
+      print(raw);
+    });
+    return null;
+  }
 
   void _saveInput(GlobalKey<FormState> key, bool validate) {
     if (key.currentState.validate()) {
@@ -123,7 +134,6 @@ class _AuthPageState extends State<AuthPage> {
                         decoration: InputDecoration(
                           labelText: AppLocalizations.of(context).emailPrompt,
                           labelStyle: regFormsHintStyle,
-                          icon: Icon(Icons.alternate_email)
                         ),
                       ),
                     ],
@@ -277,7 +287,9 @@ class _AuthPageState extends State<AuthPage> {
                     print('current first name: ' + widget.user.firstName);
                     print('current last name: ' + widget.user.lastName);
                     print('current user name: ' + widget.user.username);
-                    _handleNext();
+                    createUserService.createUser(widget.user).then((response) {
+                      _handleNext();
+                    });
                   }),
               ],
             ),

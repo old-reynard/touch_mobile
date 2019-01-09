@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-const emailKey = 'email';
-const firstNameKey = 'first_name';
+const String emailKey = 'email';
+const String firstNameKey = 'first_name';
+const String lastNameKey = 'last_name';
+const String passwordKey = 'password';
+const String usernameKey = 'username';
+const String baseApiUrl = 'http://45.33.98.155:8000/api/';
+
+const jsonHeader = {"Content-Type": "application/json"};
+
 
 const int passwordMinLength = 8;
 

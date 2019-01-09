@@ -3115,6 +3115,8 @@ limitations under the License.
 charcode
 dart_style
 glob
+http
+http_parser
 matcher
 path
 pub_semver
