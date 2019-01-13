@@ -66,10 +66,38 @@ class AppLocalizations {
     );
   }
 
-  String get passwordValidatorLength {
-    return Intl.message('Password must be over $passwordMinLength characters',
-        name: 'passwordValidatorLength',
+  String get emailValidatorExists {
+    return Intl.message('It seems a user with this email already exists. Log in?',
+        name: 'emailValidatorExists',
+        desc: 'Email validation error message for registration'
+    );
+  }
+
+  String get emailValidatorUnknown {
+    return Intl.message('We don\'t know this email. Register?',
+        name: 'emailValidatorUnknown',
+        desc: 'Email validation error message for registration'
+    );
+  }
+
+  String get passwordValidator {
+    return Intl.message('Let\'s use a valid password, please',
+        name: 'passwordValidator',
         desc: 'Password validation error message for registration'
+    );
+  }
+
+  String get usernameValidatorLength {
+    return Intl.message('Username must be over $credentialMinLength characters',
+        name: 'usernameValidatorLength',
+        desc: 'Username validation error message for registration'
+    );
+  }
+
+  String get usernameValidatorExists {
+    return Intl.message('It seems a user with this username already exists',
+        name: 'usernameValidatorExists',
+        desc: 'Username validation error message for registration'
     );
   }
 
@@ -121,6 +149,59 @@ class AppLocalizations {
         desc: 'Begins the names screen in registration'
     );
   }
+
+  String get passWidgetEnoughChars {
+    return Intl.message('$credentialMinLength characters',
+        name: 'passWidgetEnoughChars',
+        desc: 'Password screen validator widget'
+    );
+  }
+
+  String get passWidgetSpecialChar {
+    var plural = specialCharMinLength == 1 ? '' : 's';
+    return Intl.message('$specialCharMinLength special character' + plural,
+        name: 'passWidgetSpecialChar',
+        desc: 'Password screen validator widget'
+    );
+  }
+
+  String get passWidgetUpperCase {
+    var plural = upperCaseMinLength == 1 ? '' : 's';
+    return Intl.message('$upperCaseMinLength upper case character' + plural,
+        name: 'passWidgetUpperCase',
+        desc: 'Password screen validator widget'
+    );
+  }
+
+  String get passWidgetNumber {
+    var plural = numberMinLength == 1 ? '' : 's';
+    return Intl.message('$numberMinLength number' + plural,
+        name: 'passWidgetNumber',
+        desc: 'Password screen validator widget'
+    );
+  }
+
+  String get signInButton {
+    return Intl.message('Sign in',
+        name: 'signInButton',
+        desc: 'Button label on auth screen'
+    );
+  }
+
+  String get registerButton {
+    return Intl.message('Register',
+        name: 'registerButton',
+        desc: 'Button label on auth screen'
+    );
+  }
+
+  String get logoutButton {
+    return Intl.message('Log out',
+        name: 'logoutButton',
+        desc: 'Button label on auth screen'
+    );
+  }
+
 
 }
 

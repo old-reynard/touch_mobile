@@ -40,8 +40,22 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
 
+  AuthStatus status = AuthStatus.notSignedIn;
+
   @override
   Widget build(BuildContext context) {
-    return AuthPage(user: User(),);
+    return AuthPage(
+      user: User(),
+      onSignIn: () => _changeStatus(AuthStatus.signedIn),
+    );
+  }
+
+  void _changeStatus(AuthStatus newStatus) {
+    setState(() {
+      status = newStatus;
+    });
   }
 }
+
+
+enum AuthStatus { notSignedIn, signedIn }

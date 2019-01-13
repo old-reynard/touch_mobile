@@ -3,8 +3,9 @@ import 'package:tutor/data/constants.dart';
 import 'package:tutor/models/models.dart';
 import 'dart:convert';
 
-const createUserApi =  baseApiUrl + 'create_user/create/';
+const createUserApi     = baseApiUrl + 'create_user/create/';
 const verifyUsernameApi = baseApiUrl + 'username/unique/';
+const verifyEmailApi    = baseApiUrl + 'email/unique/';
 
 class CreateUserService {
   var client = http.Client();
@@ -19,22 +20,37 @@ class CreateUserService {
     };
     
     var response = await client.post(
-        createUserApi,
-        body: json.encode(userData),
-        headers: jsonHeader
-        );
-    print(response.body);
-    return response.body;
-  }
-
-  Future<String> verifyUsername(String username) async {
-    Map userData = {usernameKey: username,};
-    var response = await client.post(
-      verifyUsernameApi,
+      createUserApi,
       body: json.encode(userData),
       headers: jsonHeader
     );
     print(response.body);
     return response.body;
   }
+
+  Future<String> verifyUnique(String verifiable, String type) async {
+    Map userData;
+    String api;
+    switch(type) {
+      case emailKey:
+        userData = {emailKey: verifiable,};
+        api = verifyEmailApi;
+        break;
+      case usernameKey:
+        userData = {usernameKey: verifiable,};
+        api = verifyUsernameApi;
+        break;
+      default:
+        userData = null;
+        api = null;
+    }
+
+    if (api == null) return null;
+    var response = await client.post(
+      api, body: json.encode(userData), headers: jsonHeader
+    );
+    print(response.body);
+    return response.body;
+  }
+
 }
