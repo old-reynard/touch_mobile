@@ -9,6 +9,8 @@ import 'widgets/password_validation.dart';
 import 'services/create_user_service.dart';
 import 'dart:convert';
 import 'dart:math' as math;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 enum AuthPath { LOGIN, REGISTER }
 enum RegistrationStep { EMAIL, PASSWORD, NAMES }
@@ -53,6 +55,10 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
   bool number                 = false;
 
   CreateUserService createUserService = CreateUserService();
+  final storage = FlutterSecureStorage();
+
+  User appUser;
+  String apiKey;
 
   @override
   void initState() {
@@ -147,7 +153,6 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
                 // if user is valid and forms are validated, move forward
                 if (!_isInvalidAsyncUser && _namesKey.currentState.validate()) {
                   _regIdx++;
-                  _nextStep();
               }
             });
           });
@@ -417,10 +422,18 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
                 ui.Misc.regButtonEmpty(
                   active: true,
                   text: AppLocalizations.of(context).nextButton,
-                  onTap: () {
+                  onTap: () async {
                     _saveInput(_namesKey, _usernameAutoValidate);
                     _handleNext(usernameKey);
-                    createUserService.createUser(widget.user);
+
+                    var response = await createUserService.createUser(widget.user);
+
+                    appUser = User.fromJson(json.decode(response));
+
+                    print('appUser ' + appUser.id.toString());
+                    var apiKey = await createUserService.getApiKey(appUser.id);
+                    print('apikey - ' + apiKey);
+                    _nextStep();
                   }),
               ],
             ),

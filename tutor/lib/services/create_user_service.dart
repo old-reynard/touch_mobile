@@ -6,6 +6,7 @@ import 'dart:convert';
 const createUserApi     = baseApiUrl + 'create_user/create/';
 const verifyUsernameApi = baseApiUrl + 'username/unique/';
 const verifyEmailApi    = baseApiUrl + 'email/unique/';
+const getApiKeyApi      = baseApiUrl + 'keys/ak/';
 
 class CreateUserService {
   var client = http.Client();
@@ -48,6 +49,18 @@ class CreateUserService {
     if (api == null) return null;
     var response = await client.post(
       api, body: json.encode(userData), headers: jsonHeader
+    );
+    print(response.body);
+    return response.body;
+  }
+
+  Future<String> getApiKey(int id) async {
+    Map userData = {
+      userIdKey: id,
+    };
+
+    var response = await client.post(getApiKeyApi,
+      headers: jsonHeader, body: jsonEncode(userData)
     );
     print(response.body);
     return response.body;

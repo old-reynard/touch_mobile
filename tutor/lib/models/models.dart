@@ -1,4 +1,7 @@
+import 'package:tutor/data/constants.dart';
+
 class User {
+  int id;
   String username;
   String firstName;
   String lastName;
@@ -17,6 +20,7 @@ class User {
   bool finder;
 
   User({
+    this.id,
     this.username,
     this.firstName,
     this.lastName,
@@ -34,4 +38,29 @@ class User {
     this.biography,
     this.finder = true,
   });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        id: json[idKey],
+        active: json[activeKey] ?? true,
+        staff: json[staffKey] ?? false,
+        admin: json[adminKey] ?? false,
+        createdAt: DateTime.parse(json[createdAtKey]) ?? null,
+        confirmed: json[confirmedKey] ?? false,
+        confirmedAt: json[confirmedAtKey],
+        latitude: json[latitudeKey] ?? 0,
+        longitude: json[longitudeKey] ?? 0,
+        position: json[positionKey] ?? '',
+        biography: json[biographyKey] ?? '',
+        finder: json[finderKey] ?? true,
+        email: json[emailKey],
+        firstName: json[firstNameKey],
+        lastName: json[lastNameKey],
+        password: json[passwordKey],
+        username: json[usernameKey],
+    );
+  }
+
+  @override
+  String toString() => '${this.firstName} ${this.lastName}';
 }

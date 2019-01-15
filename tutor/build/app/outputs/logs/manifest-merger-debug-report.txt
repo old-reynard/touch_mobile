@@ -4,6 +4,7 @@ ADDED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml:1:1-39:12
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml:1:1-39:12
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml:1:1-39:12
+MERGED from [:flutter_secure_storage] D:\apps\Touch\touch_mobile\tutor\build\flutter_secure_storage\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-11:12
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml:1:1-39:12
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml:1:1-39:12
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml:1:1-39:12
@@ -67,6 +68,8 @@ uses-sdk
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml
+MERGED from [:flutter_secure_storage] D:\apps\Touch\touch_mobile\tutor\build\flutter_secure_storage\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [:flutter_secure_storage] D:\apps\Touch\touch_mobile\tutor\build\flutter_secure_storage\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml
 INJECTED from D:\apps\Touch\touch_mobile\tutor\android\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion

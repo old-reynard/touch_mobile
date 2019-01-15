@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 
 const String none           = 'None';
+const String idKey          = 'id';
+const String userIdKey      = 'user_id';
+const String activeKey      = 'active';
+const String staffKey       = 'staff';
+const String adminKey       = 'admin';
+const String createdAtKey   = 'created_at';
+const String confirmedKey   = 'confirmed';
+const String confirmedAtKey = 'confirmed_at';
+const String latitudeKey    = 'latitude';
+const String longitudeKey   = 'longitude';
+const String positionKey    = 'position';
+const String biographyKey   = 'biography';
+const String finderKey      = 'finder';
 const String emailKey       = 'email';
 const String firstNameKey   = 'first_name';
 const String lastNameKey    = 'last_name';
 const String passwordKey    = 'password';
 const String usernameKey    = 'username';
 const String resourceUriKey = 'resource_uri';
+
 const String baseApiUrl = 'http://45.33.98.155:8000/api/';
 
 const jsonHeader = {"Content-Type": "application/json"};
-
 
 const int credentialMinLength   = 8;
 const int specialCharMinLength  = 1;

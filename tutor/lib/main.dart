@@ -5,6 +5,7 @@ import 'auth_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'locale/locales.dart';
 import 'models/models.dart';
+import 'package:tutor/profile.dart';
 
 void main() => runApp(TutorApp());
 
@@ -40,14 +41,21 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
 
-  AuthStatus status = AuthStatus.notSignedIn;
+  AuthStatus status = AuthStatus.signedIn;
 
   @override
   Widget build(BuildContext context) {
-    return AuthPage(
-      user: User(),
-      onSignIn: () => _changeStatus(AuthStatus.signedIn),
-    );
+    switch (status) {
+      case AuthStatus.signedIn:
+        return ProfilePage();
+      case AuthStatus.notSignedIn:
+        return AuthPage(
+          user: User(),
+          onSignIn: () => _changeStatus(AuthStatus.signedIn),
+        );
+      default:
+        return Container();
+    }
   }
 
   void _changeStatus(AuthStatus newStatus) {
