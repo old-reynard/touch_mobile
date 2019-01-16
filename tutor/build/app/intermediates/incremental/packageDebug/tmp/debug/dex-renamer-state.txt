@@ -1,4 +1,4 @@
-#Mon Jan 14 20:22:07 EST 2019
+#Tue Jan 15 23:02:08 EST 2019
 base.0=D\:\\apps\\Touch\\touch_mobile\\tutor\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

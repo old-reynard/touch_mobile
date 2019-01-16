@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'data/constants.dart';
-
+import 'models/models.dart';
+import 'services/profile_service.dart';
 
 var picLink =
     "https://media.licdn.com/dms/image/C5603AQE2q8V20iJlZg/profile-displayphoto-shrink_200_200/0?e=1553126400&v=beta&t=HiHzyVpYWlxVT03B1kLcrMh6rxwVcpKPW3SuqJFiEZA";
 var profilePic = NetworkImage(picLink);
 
 class ProfilePage extends StatefulWidget {
+  ProfilePage({this.user});
+
+  final User user;
+
   @override
   State<StatefulWidget> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final ProfileService profileService = ProfileService();
+  User newUser;
+
+  @override
+  void initState() {
+    super.initState();
+    profileService.getUser().then((user) {
+      setState(() {
+        newUser = user;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +37,13 @@ class _ProfilePageState extends State<ProfilePage> {
         body: CustomScrollView(
       slivers: <Widget>[
         _profileAppBar(),
-        SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) => ListTile(
-                title: Text('$index'),
-              )),
-        )
+        SliverPrototypeExtentList(
+          prototypeItem: _specialty(),
+          delegate: SliverChildListDelegate([
+            _specialty(),
+            _biography(),
+          ]),
+        ),
       ],
     ));
   }
@@ -34,6 +53,8 @@ class _ProfilePageState extends State<ProfilePage> {
         pinned: true,
         expandedHeight: 350.0,
         title: Text('Name'),
+        floating: true,
+        snap: false,
         flexibleSpace: FlexibleSpaceBar(
             collapseMode: CollapseMode.parallax,
             background: Stack(
@@ -98,5 +119,26 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
             title: Text('sliver')));
+  }
+
+  Widget _specialty() {
+    return Wrap(
+      spacing: 8.0,
+      alignment: WrapAlignment.center,
+      children: newUser.specialties
+          .map((Specialty spec) => Chip(
+                avatar: CircleAvatar(
+                  child: Text(spec.name.substring(0, 1)),
+                ),
+                label: Text(spec.name.length < 20
+                    ? spec.name
+                    : spec.name.substring(0, 20) + '...'),
+              ))
+          .toList(),
+    );
+  }
+
+  Widget _biography() {
+    return Text(newUser.biography);
   }
 }
