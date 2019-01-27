@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\apps\\Touch\\touch_mobile\\tutor\\build\\app\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "outputFile": "D:\\apps\\Touch\\touch_mobile\\touch_mobile\\tutor\\build\\app\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
             "map": [
                 {
-                    "source": "D:\\apps\\Touch\\touch_mobile\\tutor\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\apps\\Touch\\touch_mobile\\touch_mobile\\tutor\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

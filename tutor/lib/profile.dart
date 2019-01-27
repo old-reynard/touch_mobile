@@ -38,10 +38,12 @@ class _ProfilePageState extends State<ProfilePage> {
       slivers: <Widget>[
         _profileAppBar(),
         SliverPrototypeExtentList(
-          prototypeItem: _specialty(),
+          prototypeItem: _biography(),
           delegate: SliverChildListDelegate([
             _specialty(),
             _biography(),
+            _biography(),
+
           ]),
         ),
       ],
@@ -139,6 +141,40 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _biography() {
-    return Text(newUser.biography);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Icon(Icons.format_quote),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: Text(
+              newUser.biography,
+              softWrap: true,
+              maxLines: 10,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Icon(Icons.format_quote),
+              ],
+            ),
+            flex: 1,
+          ),
+        ],
+      ),
+    );
   }
 }
