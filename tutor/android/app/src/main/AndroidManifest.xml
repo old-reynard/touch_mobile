@@ -16,6 +16,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="tutor"
         android:icon="@mipmap/ic_launcher">
+
+        <!--<meta-data android:name="com.google.android.geo.API_KEY"-->
+            <!--android:value="AIzaSyCeTpgt8X6Zenl9sZukgIWzNoaZdR9-o1E"/>-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -35,5 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCeTpgt8X6Zenl9sZukgIWzNoaZdR9-o1E"/>
     </application>
 </manifest>

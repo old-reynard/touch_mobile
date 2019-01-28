@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'data/constants.dart';
 import 'models/models.dart';
 import 'services/profile_service.dart';
+import 'package:geocoder/geocoder.dart';
+import 'locale/locales.dart';
+import 'data/constants.dart' show months;
 
 var picLink =
     "https://media.licdn.com/dms/image/C5603AQE2q8V20iJlZg/profile-displayphoto-shrink_200_200/0?e=1553126400&v=beta&t=HiHzyVpYWlxVT03B1kLcrMh6rxwVcpKPW3SuqJFiEZA";
@@ -37,13 +40,13 @@ class _ProfilePageState extends State<ProfilePage> {
         body: CustomScrollView(
       slivers: <Widget>[
         _profileAppBar(),
-        SliverPrototypeExtentList(
-          prototypeItem: _biography(),
+        SliverList(
+//          prototypeItem: _biography(),
           delegate: SliverChildListDelegate([
             _specialty(),
+            _since(),
+            _location(),
             _biography(),
-            _biography(),
-
           ]),
         ),
       ],
@@ -54,73 +57,101 @@ class _ProfilePageState extends State<ProfilePage> {
     return SliverAppBar(
         pinned: true,
         expandedHeight: 350.0,
-        title: Text('Name'),
         floating: true,
         snap: false,
         flexibleSpace: FlexibleSpaceBar(
-            collapseMode: CollapseMode.parallax,
-            background: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Image.network(
-                  picLink,
-                  fit: BoxFit.cover,
+          collapseMode: CollapseMode.parallax,
+          background: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              Image.network(
+                picLink,
+                fit: BoxFit.cover,
+              ),
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  decoration:
+                      BoxDecoration(color: Colors.white.withOpacity(0.0)),
                 ),
-                BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    decoration:
-                        BoxDecoration(color: Colors.white.withOpacity(0.0)),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Stack(
-                      alignment: AlignmentDirectional.topEnd,
-                      children: <Widget>[
-                        Stack(
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(''),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Stack(
+                        alignment: AlignmentDirectional.topEnd,
+                        children: <Widget>[
+                          Stack(
+                              // profile pic stack
+                              alignment: AlignmentDirectional.center,
+                              children: <Widget>[
+                                Container(
+                                  width: 200.0,
+                                  height: 200.0,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: iconsColor),
+                                ),
+                                Container(
+                                  width: 190.0,
+                                  height: 190.0,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill, image: profilePic)),
+                                ),
+                              ]),
+                          Stack(
+                            // edit button
                             alignment: AlignmentDirectional.center,
                             children: <Widget>[
                               Container(
-                                width: 200.0,
-                                height: 200.0,
+                                width: 45.0,
+                                height: 45.0,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle, color: iconsColor),
                               ),
-                              Container(
-                                width: 190.0,
-                                height: 190.0,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        fit: BoxFit.fill, image: profilePic)),
-                              ),
-                            ]),
-                        Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: <Widget>[
-                            Container(
-                              width: 45.0,
-                              height: 45.0,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: iconsColor),
-                            ),
-                            CircleAvatar(
-                              backgroundColor: accentColor,
-                              child: InkWell(
-                                child: Icon(
-                                  Icons.edit,
-                                  color: iconsColor,
+                              CircleAvatar(
+                                backgroundColor: accentColor,
+                                child: InkWell(
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: iconsColor,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )
-                      ]),
-                ),
-              ],
-            ),
-            title: Text('sliver')));
+                            ],
+                          )
+                        ]),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      newUser.firstName + ' ' + newUser.lastName,
+                      style: TextStyle(
+                        color: iconsColor,
+                        fontSize: 32,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      newUser.position,
+                      style: TextStyle(
+                        color: iconsColor,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 
   Widget _specialty() {
@@ -175,6 +206,74 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _location() {
+    final coordinates = Coordinates(newUser.latitude, newUser.longitude);
+    var addresses = Geocoder.local.findAddressesFromCoordinates(coordinates);
+    return FutureBuilder(
+      future: addresses,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasError) {
+            return Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(AppLocalizations.of(context).livesError),
+                    ),
+                  ],
+                ),
+                Divider(),
+              ],
+            );
+          }
+
+          List<Address> addresses = snapshot.data;
+          var address = addresses.first;
+          return Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      AppLocalizations.of(context).lives +
+                          ' ${address.thoroughfare}, ${address.locality}',
+                      softWrap: true,
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+            ],
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
+    );
+  }
+
+  Widget _since() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            AppLocalizations.of(context).memberSince +
+                ' ${months[newUser.createdAt.month - 1]},' +
+                ' ${newUser.createdAt.year}',
+            softWrap: true,
+          ),
+        ),
+      ],
     );
   }
 }

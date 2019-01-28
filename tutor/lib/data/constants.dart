@@ -77,3 +77,19 @@ const Color dividerColor = Color(0xFFBDBDBD);
 const Color primaryTextColor = Color(0xFF212121);
 const Color secondaryColorDark = Color(0xFF757575);
 const Color iconsColor = Color(0xFFFFFFFF);
+
+
+const List<String> months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];

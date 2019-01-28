@@ -202,7 +202,26 @@ class AppLocalizations {
     );
   }
 
+  String get lives {
+    return Intl.message('Lives:',
+        name: 'lives',
+        desc: 'Profile page, text widget telling where the user lives'
+    );
+  }
 
+  String get livesError {
+    return Intl.message('Not really clear where this person lives',
+        name: 'livesError',
+        desc: 'Profile page, text widget telling where the user lives, error message'
+    );
+  }
+
+  String get memberSince {
+    return Intl.message('Member since',
+        name: 'memberSince',
+        desc: 'Profile page, text widget telling when the user joined'
+    );
+  }
 }
 
 

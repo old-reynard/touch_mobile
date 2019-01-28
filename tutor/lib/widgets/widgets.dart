@@ -40,4 +40,57 @@ class Misc {
   static Color getButtonColor(bool active) {
     return active ? regButtonColor : Colors.white;
   }
+
+  static Widget bottomBar() {
+    return BottomNavigationBar(
+      currentIndex: 0,
+      type: BottomNavigationBarType.fixed,
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today,), //BadIcons.calendarIcon,
+          title: Text(
+              'one'
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.sort,),
+          title: Text(
+              'two'
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline,),
+          title: Text(
+              'three'
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings,),
+          title: Text(
+              'four'
+          ),
+        ),
+      ],
+    );
+  }
+
+  static Widget bottomAppBar() {
+    return BottomAppBar(
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('one'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('two'),
+          )
+        ],
+      ),
+
+    );
+  }
 }

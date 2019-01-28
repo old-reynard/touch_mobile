@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tutor/data/constants.dart';
+import 'package:tutor/data/constants.dart' show appTheme;
 import 'auth_page.dart';
+import 'find_me.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'locale/locales.dart';
-import 'models/models.dart';
+import 'models/models.dart' show User;
 import 'package:tutor/profile.dart';
 
 void main() => runApp(TutorApp());
@@ -47,7 +48,8 @@ class _RootState extends State<Root> {
   Widget build(BuildContext context) {
     switch (status) {
       case AuthStatus.signedIn:
-        return ProfilePage();
+        return FindMePage();
+//        return ProfilePage();
       case AuthStatus.notSignedIn:
         return AuthPage(
           user: User(),

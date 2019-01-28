@@ -10,7 +10,7 @@ description: Find tutors in your vicinity
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -21,6 +21,8 @@ dependencies:
   modal_progress_hud: ^0.1.2
   material_design_icons_flutter: ^3.0.3392
   flutter_secure_storage: ^3.1.2
+  geocoder: ^0.1.2
+  google_maps_flutter: ^0.0.3+3
 
 
   # The following adds the Cupertino Icons font to your application.
